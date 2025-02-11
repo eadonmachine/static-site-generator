@@ -6,10 +6,10 @@ class HTMLNode:
         self.props = props
 
     def __repr__(self):
-        return f"Tag: {self.tag}\nValue: {self.value}\nChildren: {self.children}\nProps: {self.props}"
+        return f"HTMLNode - Tag: {self.tag}, Value: {self.value}, Children: {self.children}, Props: {self.props}"
 
     def to_html(self):
-        raise NotImplementedError
+        raise NotImplementedError("to_html not implemented")
 
     def props_to_html(self):
         str = ""
