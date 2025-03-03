@@ -29,3 +29,22 @@ def generate_page(from_path, template_path, dest_path):
 
     with open(dest_path, "w") as f:
         f.write(newpage)
+
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+    if not os.path.exists(dir_path_content):
+        raise FileNotFoundError(f"Source path {dir_path_content} doesn't exist")
+
+    dirlist = os.listdir(dir_path_content)
+
+    if not os.path.exists(dest_dir_path):
+        print(f"Destination path {dest_dir_path} does not exist, creating...")
+        os.mkdir(dest_dir_path)
+
+    for filename in dirlist:
+        from_path = os.path.join(dir_path_content, filename)
+        to_path = os.path.join(dest_dir_path, filename)
+        if os.path.isfile(from_path):
+            if filename.split(".")[-1] == "md":
+                generate_page(from_path, template_path, to_path[:-2] + "html")
+        else:
+            generate_pages_recursive(from_path, template_path, to_path)

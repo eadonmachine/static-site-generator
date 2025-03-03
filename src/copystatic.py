@@ -2,7 +2,7 @@ import os, shutil
 
 def copy_directory(source_path, destination_path):
     if not os.path.exists(source_path):
-        raise ValueError(f"Source path {source_path} doesn't exist")
+        raise FileNotFoundError(f"Source path {source_path} doesn't exist")
 
     dirlist = os.listdir(source_path)
 
