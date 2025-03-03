@@ -140,7 +140,9 @@ def quote_to_html_node(block):
     for line in lines:
         if not line.startswith(">"):
             raise ValueError("invalid quote block")
-        new_lines.append(line.lstrip(">").strip())
+        new_line = line.lstrip(">").strip()
+        if new_line != "":
+            new_lines.append(new_line)
     content = " ".join(new_lines)
     children = text_to_children(content)
     return ParentNode("blockquote", children)

@@ -206,6 +206,13 @@ this is paragraph text
             html,
             "<div><blockquote>This is a blockquote block</blockquote><p>this is paragraph text</p></div>",
         )
+        md2 = "> \"I am in fact a Hobbit in all but size.\"\n>\n> -- J.R.R. Tolkien"
+        node2 = markdown_to_html_node(md2)
+        html2 = node2.to_html()
+        self.assertEqual(
+            html2,
+            "<div><blockquote>\"I am in fact a Hobbit in all but size.\" -- J.R.R. Tolkien</blockquote></div>",
+        )
 
     def test_code(self):
         md = """
